@@ -4,13 +4,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import programaKlaseak.Erabiltzailea;
+import programaKlaseak.Lehiaketa;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,8 +23,14 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.JButton;
@@ -123,6 +133,18 @@ public class erabiltzaileaLehioa extends JFrame {
         }	else	{
         	lblErabiltzaileArrunta.setText("Erabiltzaile arrunta");
 		}
+        
+        List<Lehiaketa> zureLehiaketak = new ArrayList();
+
+		try {
+			zureLehiaketak = DatuBasea.lehiaketaDB.getErabiltzaileLehiaketak(erabiltzailea.getErabiltzaileIzena());
+		} catch (SQLException e1) {
+		    e1.printStackTrace();
+		}
+		
+		for (int i = 0; i < zureLehiaketak.size(); i++) {
+			System.out.println(zureLehiaketak.get(i).getIzena());
+		}
 		
 		JPanel panelZureLehiaketak = new JPanel();
 		panelZureLehiaketak.setBackground(new Color(211, 211, 211));
@@ -137,57 +159,86 @@ public class erabiltzaileaLehioa extends JFrame {
 		panelZureLehiaketak.add(lblNewLabel_1);
 		
 		JPanel panelLehiaketak = new JPanel();
-		panelLehiaketak.setBackground(new Color(211, 211, 211));
-		panelLehiaketak.setBounds(1024, 134, 377, 633);
-		contentPane.add(panelLehiaketak);
-		panelLehiaketak.setLayout(null);
+		panelLehiaketak.setLayout(new BoxLayout(panelLehiaketak, BoxLayout.Y_AXIS));
+
+		JScrollPane scrollPane = new JScrollPane(panelLehiaketak);
+		scrollPane.setBounds(1024, 134, 377, 633);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		getContentPane().add(scrollPane);
 		
+		panelLehiaketak.add(Box.createVerticalStrut(20));
+
 		JLabel lblNewLabel_1_1 = new JLabel("Parte hartu!");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1_1.setBounds(46, 11, 291, 55);
+		lblNewLabel_1_1.setAlignmentX(Component.CENTER_ALIGNMENT); // Centra horizontalmente en el BoxLayout
 		panelLehiaketak.add(lblNewLabel_1_1);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(248, 248, 255));
-		panel.setBounds(10, 75, 357, 121);
-		panelLehiaketak.add(panel);
-		LineBorder bordePanel = new LineBorder(new Color(119, 136, 153), 2, true); 
-        panel.setBorder(bordePanel);
-		panel.setLayout(null);
+		panelLehiaketak.add(Box.createVerticalStrut(50));	
+
+		List<Lehiaketa> lehiaketak = new ArrayList();
+
+		try {
+		    lehiaketak = DatuBasea.lehiaketaDB.getAllLehiaketak();
+		} catch (SQLException e1) {
+		    e1.printStackTrace();
+		}
+        
+		for (int i = 0; i < lehiaketak.size(); i++) {
+
+			JPanel panel = new JPanel();
+		    panel.setBackground(new Color(248, 248, 255));
+		    panel.setBorder(new LineBorder(new Color(119, 136, 153), 2, true));
+		    panel.setLayout(null);
+		    panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 121)); // Establece la altura máxima
+		    panelLehiaketak.add(panel);
+
+			ImageIcon icon = new ImageIcon(getClass().getResource(lehiaketak.get(i).getLogotipoaString()));
+			Image iconResize = icon.getImage().getScaledInstance(116, 121, Image.SCALE_SMOOTH);
+			ImageIcon iconLandare = new ImageIcon(iconResize);
+
+			JLabel lblLogo = new JLabel("");
+			lblLogo.setBounds(0, 0, 116, 121);
+			lblLogo.setIcon(iconLandare);
+			panel.add(lblLogo);
+
+			JLabel lblNewLabel_3 = new JLabel(lehiaketak.get(i).getIzena());
+			lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblNewLabel_3.setBounds(126, 11, 148, 14);
+			panel.add(lblNewLabel_3);
+
+			JLabel lblNewLabel_4 = new JLabel("10/30");
+			lblNewLabel_4.setBounds(321, 13, 46, 14);
+			panel.add(lblNewLabel_4);
+
+			JButton btnParteHartu = new JButton("");
+			btnParteHartu.setBounds(321, 87, 25, 23);
+			panel.add(btnParteHartu);
+			
+			btnParteHartu.addActionListener(e -> {
+				
+			});
+
+			JTextArea txtDeskripzioa = new JTextArea();
+			txtDeskripzioa.setFont(new Font("Arial", Font.PLAIN, 11));
+			String deskripzioa = lehiaketak.get(i).getDeskribapena();
+			txtDeskripzioa.setLineWrap(true);
+			txtDeskripzioa.setWrapStyleWord(true);
+			txtDeskripzioa.setText(deskripzioa);
+			txtDeskripzioa.setEditable(false);
+			txtDeskripzioa.setBackground(new Color(248, 248, 255));
+			txtDeskripzioa.setBounds(126, 36, 189, 74);
+			panel.add(txtDeskripzioa);
+			
+			panelLehiaketak.add(Box.createVerticalStrut(15));			 
+
+		}
 		
-		ImageIcon icon = new ImageIcon(erabiltzaileaLehioa.class.getResource("/logotipoak/natura1.jpg"));
-        Image iconResize = icon.getImage().getScaledInstance(116, 121, Image.SCALE_SMOOTH);
-        ImageIcon iconLandare = new ImageIcon(iconResize);
-		
-		JLabel lblLogo = new JLabel("");
-		lblLogo.setBounds(0, 0, 116, 121);
-        lblLogo.setIcon(iconLandare);
-		panel.add(lblLogo);
-		
-		JLabel lblNewLabel_3 = new JLabel("Landare Lehiaketa");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(126, 11, 148, 14);
-		panel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("10/30");
-		lblNewLabel_4.setBounds(321, 13, 46, 14);
-		panel.add(lblNewLabel_4);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(321, 87, 25, 23);
-		panel.add(btnNewButton);
-		
-		JTextArea txtDeskripzioa = new JTextArea();
-		txtDeskripzioa.setFont(new Font("Arial", Font.PLAIN, 11));
-		txtDeskripzioa.setText("Lorem ipsum dolor sit amet\r\nconsectetur adipiscing elit eu\r\nmetus cum urna sagittis vivamus \r\ndignissim habitant diam nunc, conubia \r\nturpis at mauris facilisi nascetur id.");
-		txtDeskripzioa.setEditable(false);
-		txtDeskripzioa.setBackground(new Color(248, 248, 255));
-		txtDeskripzioa.setBounds(126, 36, 189, 74);
-		panel.add(txtDeskripzioa);
-		
-		JPanel panelIkusi = new JPanel();
-		panelIkusi.setBounds(379, 134, 646, 633);
-		contentPane.add(panelIkusi);
+		panelLehiaketak.setPreferredSize(new Dimension(350, lehiaketak.size() * 150));
+		SwingUtilities.invokeLater(() -> scrollPane.getVerticalScrollBar().setValue(0));
+
+        JPanel panelIkusi = new JPanel();
+        panelIkusi.setBounds(379, 134, 646, 633);
+        getContentPane().add(panelIkusi);
 	}
 }
