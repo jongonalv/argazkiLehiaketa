@@ -1,131 +1,118 @@
+INSERT INTO `argazkiLehiaketa`.`Erabiltzailea` (`izena`, `abizena`, `korreoa`, `erabiltzaile_izena`, `pasahitza`, `mota`) VALUES
+('Ane', 'Lopez', 'ane.lopez@example.com', 'anelo', 'contraseña123', 'arrunta'),
+('Mikel', 'Garcia', 'mikel.garcia@example.com', 'mikgar', 'p4ssw0rd', 'arrunta'),
+('Jone', 'Martinez', 'jone.martinez@example.com', 'jmartinez', '12345678', 'arrunta'),
+('Unai', 'Fernandez', 'unai.fernandez@example.com', 'unaif', 'password', 'arrunta'),
+('Leire', 'Sanchez', 'leire.sanchez@example.com', 'leisan', 'abcd1234', 'arrunta'),
+('Iker', 'Rodriguez', 'iker.rodriguez@example.com', 'ikerod', 'qwerty123', 'arrunta'),
+('Nerea', 'Perez', 'nerea.perez@example.com', 'nereap', 'nereapass', 'arrunta'),
+('Asier', 'Lopez', 'asier.lopez@example.com', 'asierlo', 'contraseña123', 'arrunta'),
+('Maite', 'Gonzalez', 'maite.gonzalez@example.com', 'maigon', 'p4ssw0rd', 'arrunta'),
+('Eneko', 'Hernandez', 'eneko.hernandez@example.com', 'enekoh', '12345678', 'arrunta'),
+('Ainhoa', 'Jimenez', 'ainhoa.jimenez@example.com', 'aijim', 'password', 'arrunta'),
+('Jon', 'Ruiz', 'jon.ruiz@example.com', 'jonrui', 'abcd1234', 'arrunta'),
+('Naiara', 'Alvarez', 'naiara.alvarez@example.com', 'naial', 'qwerty123', 'arrunta'),
+('Aitor', 'Gomez', 'aitor.gomez@example.com', 'aitogo', 'naiarapass', 'arrunta'),
+('Izaro', 'Vazquez', 'izaro.vazquez@example.com', 'izarova', 'qwertyui', 'arrunta'),
+('Urko', 'Iglesias', 'urko.iglesias@example.com', 'urkoig', 'contraseña123', 'arrunta'),
+('Ane', 'Lopez', 'ane.lopez@example.com', 'anelo', 'contraseña123', 'admin'),
+('Eneko', 'Fernandez', 'eneko.fernandez@example.com', 'enefer', '12345678', 'epailea'),
+('Miren', 'Garcia', 'miren.garcia@example.com', 'mirgar', 'password', 'kudeatzailea'),
+('Amaia', 'Sanchez', 'amaia.sanchez@example.com', 'amaisan', 'abcd1234', 'arrunta');
 
--- Erabiltzaile datuak
-INSERT INTO `Lehiaketa`.`Erabiltzailea` (`erabiltzaile_ID`, `izena`, `abizena`, `erabiltzaile_izena`, `pasahitza`, `epailea_izan`) VALUES
-(1, 'Juan', 'López', 'juan_lopez', 'ju4nP4sS', 'bai'),
-(2, 'María', 'García', 'maria84', 'MaRiA1984', 'ez'),
-(3, 'David', 'Martínez', 'davidm', 'dav1dM', 'ez'),
-(4, 'Ana', 'Fernández', 'anafernandez', 'An@F3rn@nd3z', 'bai'),
-(5, 'Pedro', 'Rodríguez', 'pedror', 'p3dr0r0dr1g', 'ez'),
-(6, 'Elena', 'Sánchez', 'elenas', '3len@S4nch3z', 'bai'),
-(7, 'Carlos', 'Gómez', 'carlos99', 'C@rl0sG0m3z', 'ez'),
-(8, 'Laura', 'Pérez', 'laurap', 'L4uR@PeR3z', 'ez'),
-(9, 'Sara', 'López', 'saral', 'S@r@l0p3z', 'bai'),
-(10, 'Javier', 'García', 'javigar', 'J@v1G@rc14', 'ez'),
-(11, 'Lucía', 'Martín', 'luciam', 'Luc14M4rt1n', 'ez'),
-(12, 'Pablo', 'González', 'pablog', 'P@bl0G0nz@l3z', 'bai'),
-(13, 'Carmen', 'Rodríguez', 'carmenr', 'C@rm3nR0dr1gu3z', 'ez'),
-(14, 'Manuel', 'Martínez', 'manuelm', 'M@nu3lM@rt1n3z', 'ez'),
-(15, 'Silvia', 'Díaz', 'silviad', 'S1lv14D14z', 'bai'),
-(16, 'Alonso', 'Ruiz', 'alonsor', '4l0ns0Ru1z', 'ez'),
-(17, 'Marina', 'García', 'marinag', 'M@r1n@g@rc14', 'ez'),
-(18, 'Roberto', 'Fernández', 'robertof', 'R0b3rt0F3rn@nd3z', 'ez'),
-(19, 'Raquel', 'López', 'raquell', 'R@qu3LL0p3z', 'bai'),
-(20, 'Andrea', 'Sánchez', 'andreas', '4ndr34S@nch3z', 'ez');
+INSERT INTO `argazkiLehiaketa`.`Lehiaketa` (`izena`, `data_hasiera`, `data_bukaera`, `deskribapena`, `logotipoa`) VALUES
+('Natura I', '2024-05-01', '2024-06-01', 'Izena eman zure argazkiak, naturaren edertasuna azaltzen dutenak.', '/logotipoak/natura1.jpg'),
+('Urban I', '2024-06-15', '2024-07-15', 'Lor ditudan argazkiak hiriko paisaiak eta gune urbanoen edertasuna adierazten dute.', '/logotipoak/urban1.jpg'),
+('Animaliak I', '2024-08-01', '2024-09-01', 'Argazkiak hartu gure animaliak, naturaren parte dira eta merezi dute ikusgarritasuna.', '/logotipoak/animaliak1.jpg'),
+('Loreak I', '2024-09-15', '2024-10-15', 'Lore eta landareak azaltzen dituzten argazkiak, koloreak eta forma interesgarriak dituztenak.', '/logotipoak/loreak1.jpg');
 
--- Lehiaketa datuak
-INSERT INTO `Lehiaketa`.`Lehiaketa` (`lehiaketa_ID`, `lehiaketa_izena`, `data_hasiera`, `data_bukaera`, `Deskribapena`, `helbidea_logotipoa`) VALUES
-(1, 'Euskal Argazki Lehiaketa 2024', '2024-05-01', '2024-05-30', 'Euskal argazkilarien arteko lehiaketa.', '/lehiaketak/euskal_argazki_lehiaketa_logo.png'),
-(2, 'Herriko Argazki Txapelketa', '2024-08-20', '2024-09-15', 'Herriko argazki lehiaketa.', '/lehiaketak/herriko_argazki_txapelketa_logo.png'),
-(3, 'Txakur Lehiaketa 2024', '2024-06-10', '2024-06-15', 'Txakur bat baino gehiago duen argazki lehiaketa.', '/lehiaketak/txakur_lehiaketa_logo.png'),
-(4, 'Landare Lehiaketa 2024', '2024-07-10', '2024-07-20', 'Landareen argazki lehiaketa.', '/lehiaketak/landare_lehiaketa_logo.png'),
-(5, 'Bazkideen Elkartearen Argazki Lehiaketa 2024', '2024-09-10', '2024-09-30', 'Bazkideen elkartearen argazki lehiaketa.', '/lehiaketak/bazkideen_elkartearen_argazki_lehiaketa_logo.png');
+-- Insertar participantes en competiciones específicas
 
+-- Participantes para la competición "Natura I"
+INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
+VALUES (1, 1), (2, 1), (3, 1), (4, 1), (5, 1);
 
+-- Participantes para la competición "Urban I"
+INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
+VALUES (6, 2), (7, 2), (8, 2), (9, 2), (10, 2);
 
--- Euskal Argazki Lehiaketa 2024
-INSERT INTO `Lehiaketa`.`Faseak` (`ID_Fasea`, `etapa`, `data_hasiera`, `data_bukaera`, `Lehiaketa_ID`) VALUES
-(1, 'Hautaketa fasea', '2024-05-10', '2024-05-20', 1),
-(2, 'Inskripzioak', '2024-05-01', '2024-05-09', 1),
-(3, 'Botoak', '2024-05-28', '2024-05-30', 1),
-(4, 'Finala', '2024-05-25', '2024-05-30', 1);
+-- Participantes para la competición "Animaliak I"
+INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
+VALUES (11, 3), (12, 3), (13, 3), (14, 3), (15, 3);
 
--- Herriko Argazki Txapelketa
-INSERT INTO `Lehiaketa`.`Faseak` (`ID_Fasea`, `etapa`, `data_hasiera`, `data_bukaera`, `Lehiaketa_ID`) VALUES
-(5, 'Txapelketa hasiera', '2024-08-20', '2024-09-05', 2),
-(6, 'Inskripzioak', '2024-08-10', '2024-08-19', 2),
-(7, 'Botoak', '2024-09-12', '2024-09-14', 2),
-(8, 'Txapelketa amaiera', '2024-09-10', '2024-09-15', 2);
+-- Participantes para la competición "Loreak I"
+INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
+VALUES (16, 4), (17, 4), (18, 4), (19, 4), (20, 4);
 
--- Txakur Lehiaketa 2024
-INSERT INTO `Lehiaketa`.`Faseak` (`ID_Fasea`, `etapa`, `data_hasiera`, `data_bukaera`, `Lehiaketa_ID`) VALUES
-(9, 'Argazki bidaltzea', '2024-06-10', '2024-06-12', 3),
-(10, 'Inskripzioak', '2024-06-01', '2024-06-09', 3),
-(11, 'Botoak', '2024-06-18', '2024-06-20', 3),
-(12, 'Txapelketaren emaitzak', '2024-06-15', '2024-06-20', 3);
+-- Otorgar acceso a todas las competiciones a los usuarios con ID 18 y 19
 
--- Landare Lehiaketa 2024
-INSERT INTO `Lehiaketa`.`Faseak` (`ID_Fasea`, `etapa`, `data_hasiera`, `data_bukaera`, `Lehiaketa_ID`) VALUES
-(13, 'Argazkiak bidaltzea', '2024-07-10', '2024-07-15', 4),
-(14, 'Inskripzioak', '2024-07-01', '2024-07-09', 4),
-(15, 'Botoak', '2024-07-18', '2024-07-20', 4),
-(16, 'Hautaketa eta epaimahaia', '2024-07-17', '2024-07-20', 4);
+-- Obtener el ID de todas las competiciones
+SET @lehiaketa_id_1 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa` WHERE `izena` = 'Natura I');
+SET @lehiaketa_id_2 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa` WHERE `izena` = 'Urban I');
+SET @lehiaketa_id_3 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa` WHERE `izena` = 'Animaliak I');
+SET @lehiaketa_id_4 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa` WHERE `izena` = 'Loreak I');
 
--- Bazkideen Elkartearen Argazki Lehiaketa 2024
-INSERT INTO `Lehiaketa`.`Faseak` (`ID_Fasea`, `etapa`, `data_hasiera`, `data_bukaera`, `Lehiaketa_ID`) VALUES
-(17, 'Argazkiak bidaltzea', '2024-09-10', '2024-09-20', 5),
-(18, 'Inskripzioak', '2024-09-01', '2024-09-09', 5),
-(19, 'Botoak', '2024-09-28', '2024-09-30', 5),
-(20, 'Txapelketaren irabazleak', '2024-09-25', '2024-09-30', 5);
+-- Insertar participaciones para el usuario con ID 18
+INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
+VALUES (18, @lehiaketa_id_1), (18, @lehiaketa_id_2), (18, @lehiaketa_id_3), (18, @lehiaketa_id_4);
 
----------------- ATALAK -----------------
+-- Insertar participaciones para el usuario con ID 19
+INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
+VALUES (19, @lehiaketa_id_1), (19, @lehiaketa_id_2), (19, @lehiaketa_id_3), (19, @lehiaketa_id_4);
 
--- Euskal Argazki Lehiaketa 2024 - Kategoriak
-INSERT INTO `Lehiaketa`.`Atala` (`atala_ID`, `izena`, `saria`, `helbidea_Irudiak`, `argazki_maximo`, `lehiaketa_ID`, `Irabazlea`) VALUES
-(1, 'Natura Paisaia', 'Euskal kostaldean bidaia', '/atalak/paisaia_naturala/', 10, 1, NULL),
-(2, 'Hiri-bizitza', 'Casa-Julian jatetxean afaria', '/atalak/urbanoa/', 10, 1, NULL),
-(3, 'Erretratuak', 'Richard argazki dendan dohainikoa-txartela', '/atalak/retratoa/', 10, 1, NULL);
+-- Insertar temáticas para cada competición
 
--- Herriko Argazki Txapelketa - Kategoriak
-INSERT INTO `Lehiaketa`.`Atala` (`atala_ID`, `izena`, `saria`, `helbidea_Irudiak`, `argazki_maximo`, `lehiaketa_ID`, `Irabazlea`) VALUES
-(4, 'Herriko Bizikidetza', 'Herriko bazkaria dohainik 4 pertsonentzako', '/atalak/herriko_bizikidetza/', 20, 2, NULL),
-(5, 'Herriko Txokoak', 'Herriko zesta (100 euro baloratua)', '/atalak/herriko_txokoak/', 20, 2, NULL),
-(6, 'Herriko Paisaia', '100 euro', '/atalak/herriko_paisaia/', 20, 2, NULL);
+-- Competición: Natura I
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
+VALUES ('Planta', '1', 10, @lehiaketa_id_1), ('Animalia', '1', 10, @lehiaketa_id_1), ('Paisaia', '1', 10, @lehiaketa_id_1);
 
--- Txakur Lehiaketa 2024 - Kategoriak
-INSERT INTO `Lehiaketa`.`Atala` (`atala_ID`, `izena`, `saria`, `helbidea_Irudiak`, `argazki_maximo`, `lehiaketa_ID`, `Irabazlea`) VALUES
-(7, 'Parkeko Txakurrak', 'Urte bateko bonua txakur janarirako', '/atalak/txakurak_parkean/', 10, 3, NULL),
-(8, 'Hondartzako Txakurrak', '200 euro', '/atalak/txakurak_hondartzan/', 10, 3, NULL);
+-- Competición: Urban I
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
+VALUES ('Hiri-lurra', '1', 10, @lehiaketa_id_2), ('Hiriburu', '1', 10, @lehiaketa_id_2), ('Grafitiak', '1', 10, @lehiaketa_id_2);
 
--- Landare Lehiaketa 2024 - Kategoriak
-INSERT INTO `Lehiaketa`.`Atala` (`atala_ID`, `izena`, `saria`, `helbidea_Irudiak`, `argazki_maximo`, `lehiaketa_ID`, `Irabazlea`) VALUES
-(9, 'Parkeko Landareak', 'Landare-jardineria kit profesionala', '/atalak/landareak_parkean/', 10, 4, NULL),
-(10, 'Etxeko Landareak', '100 euro', '/atalak/landareak_etxean/', 10, 4, NULL);
+-- Competición: Animaliak I
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
+VALUES ('Mamalia', '1', 10, @lehiaketa_id_3), ('Arrainak', '1', 10, @lehiaketa_id_3), ('Insektuak', '1', 10, @lehiaketa_id_3);
 
--- Bazkideen Elkartearen Argazki Lehiaketa 2024 - Kategoriak
-INSERT INTO `Lehiaketa`.`Atala` (`atala_ID`, `izena`, `saria`, `helbidea_Irudiak`, `argazki_maximo`, `lehiaketa_ID`, `Irabazlea`) VALUES
-(11, 'Mendiak', 'Pireneoen bailaraerdiko etxeko buelta-astea rurala', '/atalak/mendiak/', 5, 5, NULL),
-(12, 'Landareak Zelaietan', '200 euro', '/atalak/landareak_zelaietan/', 5, 5, NULL);
+-- Competición: Loreak I
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
+VALUES ('Barbakoa', '1', 10, @lehiaketa_id_4), ('Suharrak', '1', 10, @lehiaketa_id_4), ('Zuhaitzak', '1', 10, @lehiaketa_id_4);
 
--- Euskal Argazki Lehiaketa 2024
-INSERT INTO `Lehiaketa`.`Parte_hartu` (`Erabiltzaileak_erabiltzaile_ID`, `Lehiaketa_lehiaketa_ID`) VALUES
-(1, 1),  -- User 1 participating in competition 1 (Euskal Argazki Lehiaketa 2024)
-(2, 1),  -- User 2 participating in competition 1
-(3, 1),  -- User 3 participating in competition 1
-(4, 1),  -- User 4 participating in competition 1
-(5, 1);  -- User 5 participating in competition 1
+-- Competición: Natura I
+SET @lehiaketa_id_1 = (SELECT lehiaketa_ID FROM argazkiLehiaketa.Lehiaketa WHERE izena = 'Natura I');
 
--- Herriko Argazki Txapelketa - Users participating
-INSERT INTO `Lehiaketa`.`Parte_hartu` (`Erabiltzaileak_erabiltzaile_ID`, `Lehiaketa_lehiaketa_ID`) VALUES
-(6, 2),  -- User 6 participating in competition 2 (Herriko Argazki Txapelketa)
-(7, 2);  -- User 7 participating in competition 2
+-- Fases para Natura I
+INSERT INTO argazkiLehiaketa.Fasea (etapa, data_hasiera, data_bukaera, lehiaketa)
+VALUES ('Inskripzioa', '2024-05-01', '2024-05-31', @lehiaketa_id_1),
+       ('Hautatzea', '2024-06-01', '2024-06-30', @lehiaketa_id_1),
+       ('Finala', '2024-07-01', '2024-07-31', @lehiaketa_id_1);
 
--- Txakur Lehiaketa 2024 - Users participating
-INSERT INTO `Lehiaketa`.`Parte_hartu` (`Erabiltzaileak_erabiltzaile_ID`, `Lehiaketa_lehiaketa_ID`) VALUES
-(8, 3),  -- User 8 participating in competition 3 (Txakur Lehiaketa 2024)
-(9, 3);  -- User 9 participating in competition 3
+-- Competición: Urban I
+SET @lehiaketa_id_2 = (SELECT lehiaketa_ID FROM argazkiLehiaketa.Lehiaketa WHERE izena = 'Urban I');
 
--- Landare Lehiaketa 2024 - Users participating
-INSERT INTO `Lehiaketa`.`Parte_hartu` (`Erabiltzaileak_erabiltzaile_ID`, `Lehiaketa_lehiaketa_ID`) VALUES
-(10, 4); -- User 10 participating in competition 4 (Landare Lehiaketa 2024)
+-- Fases para Urban I
+INSERT INTO argazkiLehiaketa.Fasea (etapa, data_hasiera, data_bukaera, lehiaketa)
+VALUES ('Inskripzioa', '2024-06-01', '2024-06-30', @lehiaketa_id_2),
+       ('Hautatzea', '2024-07-01', '2024-07-31', @lehiaketa_id_2),
+       ('Finala', '2024-08-01', '2024-08-31', @lehiaketa_id_2);
 
--- Bazkideen Elkartearen Argazki Lehiaketa 2024 - Users participating
-INSERT INTO `Lehiaketa`.`Parte_hartu` (`Erabiltzaileak_erabiltzaile_ID`, `Lehiaketa_lehiaketa_ID`) VALUES
-(11, 5), -- User 11 participating in competition 5 (Bazkideen Elkartearen Argazki Lehiaketa 2024)
-(12, 5), -- User 12 participating in competition 5
-(13, 6); -- User 13 participating in competition 6 (Euskal Argazki Lehiaketa 2024)
+-- Competición: Animaliak I
+SET @lehiaketa_id_3 = (SELECT lehiaketa_ID FROM argazkiLehiaketa.Lehiaketa WHERE izena = 'Animaliak I');
 
+-- Fases para Animaliak I
+INSERT INTO argazkiLehiaketa.Fasea (etapa, data_hasiera, data_bukaera, lehiaketa)
+VALUES ('Inskripzioa', '2024-07-01', '2024-07-31', @lehiaketa_id_3),
+       ('Hautatzea', '2024-08-01', '2024-08-31', @lehiaketa_id_3),
+       ('Finala', '2024-09-01', '2024-09-30', @lehiaketa_id_3);
 
+-- Competición: Loreak I
+SET @lehiaketa_id_4 = (SELECT lehiaketa_ID FROM argazkiLehiaketa.Lehiaketa WHERE izena = 'Loreak I');
 
+-- Fases para Loreak I
+INSERT INTO argazkiLehiaketa.Fasea (etapa, data_hasiera, data_bukaera, lehiaketa)
+VALUES ('Inskripzioa', '2024-08-01', '2024-08-31', @lehiaketa_id_4),
+       ('Hautatzea', '2024-09-01', '2024-09-30', @lehiaketa_id_4),
+       ('Finala', '2024-10-01', '2024-10-31', @lehiaketa_id_4);
 
 
 

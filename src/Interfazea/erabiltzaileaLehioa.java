@@ -26,7 +26,7 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-public class erabiltzaileaFrame extends JFrame {
+public class erabiltzaileaLehioa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -36,7 +36,7 @@ public class erabiltzaileaFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public erabiltzaileaFrame(boolean epailea, Erabiltzailea erabiltzailea) {
+	public erabiltzaileaLehioa(boolean epailea, Erabiltzailea erabiltzailea) {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1401, 767);
@@ -78,14 +78,14 @@ public class erabiltzaileaFrame extends JFrame {
 		lblTituloa.setBounds(52, 23, 530, 85);
 		panelGorakoa.add(lblTituloa);
 		
-        ImageIcon originalIcon = new ImageIcon(erabiltzaileaFrame.class.getResource("/Irudiak/erabiltzailea.png"));
+        ImageIcon originalIcon = new ImageIcon(erabiltzaileaLehioa.class.getResource("/Irudiak/erabiltzailea.png"));
         Image resizedImage = originalIcon.getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizedImage);
 
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setIcon(resizedIcon);
-        lblNewLabel.setBounds(1184, 11, 108, 101); // Establecer el tamaño como 50x50px
+        lblNewLabel.setBounds(1184, 11, 108, 101);
         panelGorakoa.add(lblNewLabel);
         
         JLabel lblErabiltzailea = new JLabel("");
@@ -156,7 +156,7 @@ public class erabiltzaileaFrame extends JFrame {
         panel.setBorder(bordePanel);
 		panel.setLayout(null);
 		
-		ImageIcon icon = new ImageIcon(erabiltzaileaFrame.class.getResource("/Irudiak/landare.jpg"));
+		ImageIcon icon = new ImageIcon(erabiltzaileaLehioa.class.getResource("/logotipoak/natura1.jpg"));
         Image iconResize = icon.getImage().getScaledInstance(116, 121, Image.SCALE_SMOOTH);
         ImageIcon iconLandare = new ImageIcon(iconResize);
 		
@@ -175,7 +175,7 @@ public class erabiltzaileaFrame extends JFrame {
 		panel.add(lblNewLabel_4);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(322, 87, 25, 23);
+		btnNewButton.setBounds(321, 87, 25, 23);
 		panel.add(btnNewButton);
 		
 		JTextArea txtDeskripzioa = new JTextArea();

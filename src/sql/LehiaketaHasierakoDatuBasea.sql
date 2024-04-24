@@ -5,146 +5,153 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema Lehiaketa
+-- Schema argazkiLehiaketa
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema Lehiaketa
+-- Schema argazkiLehiaketa
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Lehiaketa` DEFAULT CHARACTER SET utf8 ;
-USE `Lehiaketa` ;
+CREATE SCHEMA IF NOT EXISTS `argazkiLehiaketa` DEFAULT CHARACTER SET utf8 ;
+USE `argazkiLehiaketa` ;
 
 -- -----------------------------------------------------
--- Table `Lehiaketa`.`Lehiaketa`
+-- Table `argazkiLehiaketa`.`Lehiaketa`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Lehiaketa` (
-  `lehiaketa_ID` INT NOT NULL,
-  `lehiaketa_izena` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Lehiaketa` (
+  `lehiaketa_ID` INT NOT NULL AUTO_INCREMENT,
+  `izena` VARCHAR(45) NOT NULL,
   `data_hasiera` DATE NOT NULL,
   `data_bukaera` DATE NOT NULL,
-  `Deskribapena` VARCHAR(300) NOT NULL,
-  `helbidea_logotipoa` VARCHAR(255) NOT NULL,
+  `deskribapena` VARCHAR(300) NOT NULL,
+  `logotipoa` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`lehiaketa_ID`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Lehiaketa`.`Erabiltzailea`
+-- Table `argazkiLehiaketa`.`Erabiltzailea`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Erabiltzailea` (
-  `erabiltzaile_ID` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Erabiltzailea` ( 
+  `erabiltzailea_ID` INT NOT NULL AUTO_INCREMENT,
   `izena` VARCHAR(45) NOT NULL,
   `abizena` VARCHAR(45) NOT NULL,
-  `erabiltzaile_izena` VARCHAR(20) NOT NULL,
+  `korreoa` VARCHAR(60) NOT NULL,
+  `erabiltzaile_izena` VARCHAR(45) NOT NULL,
   `pasahitza` VARCHAR(20) NOT NULL,
-  `epailea_izan` VARCHAR(3) NOT NULL,
-  PRIMARY KEY (`erabiltzaile_ID`))
+  `mota` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`erabiltzailea_ID`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Lehiaketa`.`Kudeatzaileak`
+-- Table `argazkiLehiaketa`.`Atala`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Kudeatzaileak` (
-  `kudeatzaile_ID` INT NOT NULL,
-  `erabiltzailea` VARCHAR(45) NOT NULL,
-  `korreoa` VARCHAR(45) NOT NULL,
-  `administratzailea` INT NOT NULL,
-  PRIMARY KEY (`kudeatzaile_ID`),
-  INDEX `fk_Kudeatzaileak_Erabiltzailea1_idx` (`administratzailea` ASC) VISIBLE,
-  CONSTRAINT `fk_Kudeatzaileak_Erabiltzailea1`
-    FOREIGN KEY (`administratzailea`)
-    REFERENCES `Lehiaketa`.`Erabiltzailea` (`erabiltzaile_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `Lehiaketa`.`Atala`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Atala` (
-  `atala_ID` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Atala` (
+  `atala_ID` INT NOT NULL AUTO_INCREMENT,
   `izena` VARCHAR(45) NOT NULL,
   `saria` VARCHAR(45) NOT NULL,
-  `helbidea_Irudiak` VARCHAR(255) NOT NULL,
-  `argazki_maximo` INT NOT NULL,
+  `argazki_max` INT NOT NULL,
   `lehiaketa_ID` INT NOT NULL,
-  `Irabazlea` INT NOT NULL,
   PRIMARY KEY (`atala_ID`),
-  INDEX `fk_Atalak_Lehiaketa1_idx` (`lehiaketa_ID` ASC) VISIBLE,
-  INDEX `fk_Atalak_Erabiltzailea1_idx` (`Irabazlea` ASC) VISIBLE,
-  CONSTRAINT `fk_Atalak_Lehiaketa1`
+  INDEX `fk_Atala_Lehiaketa1_idx` (`lehiaketa_ID` ASC) VISIBLE,
+  CONSTRAINT `fk_Atala_Lehiaketa1`
     FOREIGN KEY (`lehiaketa_ID`)
-    REFERENCES `Lehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Atalak_Erabiltzailea1`
-    FOREIGN KEY (`Irabazlea`)
-    REFERENCES `Lehiaketa`.`Erabiltzailea` (`erabiltzaile_ID`)
+    REFERENCES `argazkiLehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Lehiaketa`.`Parte_hartu`
+-- Table `argazkiLehiaketa`.`Argazkia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Parte_hartu` (
-  `Erabiltzaileak_erabiltzaile_ID` INT NOT NULL,
-  `Lehiaketa_lehiaketa_ID` INT NOT NULL,
-  PRIMARY KEY (`Erabiltzaileak_erabiltzaile_ID`, `Lehiaketa_lehiaketa_ID`),
-  INDEX `fk_Erabiltzaileak_has_Lehiaketa_Lehiaketa1_idx` (`Lehiaketa_lehiaketa_ID` ASC) VISIBLE,
-  INDEX `fk_Erabiltzaileak_has_Lehiaketa_Erabiltzaileak_idx` (`Erabiltzaileak_erabiltzaile_ID` ASC) VISIBLE,
-  CONSTRAINT `fk_Erabiltzaileak_has_Lehiaketa_Erabiltzaileak`
-    FOREIGN KEY (`Erabiltzaileak_erabiltzaile_ID`)
-    REFERENCES `Lehiaketa`.`Erabiltzailea` (`erabiltzaile_ID`)
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Argazkia` (
+  `irudia_ID` INT NOT NULL AUTO_INCREMENT,
+  `kokapena` VARCHAR(300) NOT NULL,
+  `botoak` INT NOT NULL,
+  `egilea` INT NOT NULL,
+  `atala` INT NOT NULL,
+  `lehiaketa` INT NOT NULL,
+  PRIMARY KEY (`irudia_ID`),
+  INDEX `fk_Argazkia_Erabiltzailea1_idx` (`egilea` ASC) VISIBLE,
+  INDEX `fk_Argazkia_Atala1_idx` (`atala` ASC) VISIBLE,
+  INDEX `fk_Argazkia_Lehiaketa1_idx` (`lehiaketa` ASC) VISIBLE,
+  CONSTRAINT `fk_Argazkia_Erabiltzailea1`
+    FOREIGN KEY (`egilea`)
+    REFERENCES `argazkiLehiaketa`.`Erabiltzailea` (`erabiltzailea_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Erabiltzaileak_has_Lehiaketa_Lehiaketa1`
-    FOREIGN KEY (`Lehiaketa_lehiaketa_ID`)
-    REFERENCES `Lehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
+  CONSTRAINT `fk_Argazkia_Atala1`
+    FOREIGN KEY (`atala`)
+    REFERENCES `argazkiLehiaketa`.`Atala` (`atala_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Argazkia_Lehiaketa1`
+    FOREIGN KEY (`lehiaketa`)
+    REFERENCES `argazkiLehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Lehiaketa`.`Faseak`
+-- Table `argazkiLehiaketa`.`Fasea`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Faseak` (
-  `ID_Fasea` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Fasea` (
+  `fasea_ID` INT NOT NULL AUTO_INCREMENT,
   `etapa` VARCHAR(45) NOT NULL,
   `data_hasiera` DATE NOT NULL,
   `data_bukaera` DATE NOT NULL,
-  `Lehiaketa_ID` INT NOT NULL,
-  PRIMARY KEY (`ID_Fasea`),
-  INDEX `fk_Faseak_Lehiaketa1_idx` (`Lehiaketa_ID` ASC) VISIBLE,
-  CONSTRAINT `fk_Faseak_Lehiaketa1`
-    FOREIGN KEY (`Lehiaketa_ID`)
-    REFERENCES `Lehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
+  `lehiaketa` INT NOT NULL,
+  PRIMARY KEY (`fasea_ID`),
+  INDEX `fk_Fasea_Lehiaketa1_idx` (`lehiaketa` ASC) VISIBLE,
+  CONSTRAINT `fk_Fasea_Lehiaketa1`
+    FOREIGN KEY (`lehiaketa`)
+    REFERENCES `argazkiLehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `Lehiaketa`.`Kudeatzaileak_has_Lehiaketa`
+-- Table `argazkiLehiaketa`.`Parte_hartu`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Lehiaketa`.`Kudeatzaileak_has_Lehiaketa` (
-  `Kudeatzaileak_kudeatzaile_ID` INT NOT NULL,
-  `Lehiaketa_lehiaketa_ID` INT NOT NULL,
-  PRIMARY KEY (`Kudeatzaileak_kudeatzaile_ID`, `Lehiaketa_lehiaketa_ID`),
-  INDEX `fk_Kudeatzaileak_has_Lehiaketa_Lehiaketa1_idx` (`Lehiaketa_lehiaketa_ID` ASC) VISIBLE,
-  INDEX `fk_Kudeatzaileak_has_Lehiaketa_Kudeatzaileak1_idx` (`Kudeatzaileak_kudeatzaile_ID` ASC) VISIBLE,
-  CONSTRAINT `fk_Kudeatzaileak_has_Lehiaketa_Kudeatzaileak1`
-    FOREIGN KEY (`Kudeatzaileak_kudeatzaile_ID`)
-    REFERENCES `Lehiaketa`.`Kudeatzaileak` (`kudeatzaile_ID`)
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Parte_hartu` (
+  `erabiltzailea` INT NOT NULL,
+  `lehiaketa` INT NOT NULL,
+  PRIMARY KEY (`erabiltzailea`, `lehiaketa`),
+  INDEX `fk_Erabiltzailea_has_Lehiaketa_Lehiaketa1_idx` (`lehiaketa` ASC) VISIBLE,
+  INDEX `fk_Erabiltzailea_has_Lehiaketa_Erabiltzailea_idx` (`erabiltzailea` ASC) VISIBLE,
+  CONSTRAINT `fk_Erabiltzailea_has_Lehiaketa_Erabiltzailea`
+    FOREIGN KEY (`erabiltzailea`)
+    REFERENCES `argazkiLehiaketa`.`Erabiltzailea` (`erabiltzailea_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Kudeatzaileak_has_Lehiaketa_Lehiaketa1`
-    FOREIGN KEY (`Lehiaketa_lehiaketa_ID`)
-    REFERENCES `Lehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
+  CONSTRAINT `fk_Erabiltzailea_has_Lehiaketa_Lehiaketa1`
+    FOREIGN KEY (`lehiaketa`)
+    REFERENCES `argazkiLehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `argazkiLehiaketa`.`Bozkatu`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Bozkatu` (
+  `Epailea` INT NOT NULL,
+  `Argazkia` INT NOT NULL,
+  PRIMARY KEY (`Epailea`, `Argazkia`),
+  INDEX `fk_Erabiltzailea_has_Argazkia_Argazkia1_idx` (`Argazkia` ASC) VISIBLE,
+  INDEX `fk_Erabiltzailea_has_Argazkia_Erabiltzailea1_idx` (`Epailea` ASC) VISIBLE,
+  CONSTRAINT `fk_Erabiltzailea_has_Argazkia_Erabiltzailea1`
+    FOREIGN KEY (`Epailea`)
+    REFERENCES `argazkiLehiaketa`.`Erabiltzailea` (`erabiltzailea_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Erabiltzailea_has_Argazkia_Argazkia1`
+    FOREIGN KEY (`Argazkia`)
+    REFERENCES `argazkiLehiaketa`.`Argazkia` (`irudia_ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

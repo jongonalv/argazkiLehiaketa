@@ -30,7 +30,7 @@ import programaKlaseak.Erabiltzailea;
 /**
  * The Class Register.
  */
-public class registerFrame extends JFrame {
+public class registerLehioa extends JFrame {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -113,7 +113,7 @@ public class registerFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public registerFrame() {
+	public registerLehioa() {
 		// Barruko barra kentzeko
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -249,7 +249,7 @@ public class registerFrame extends JFrame {
 		contentPane.add(bueltatuBtn);
 		bueltatuBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loginFrame login = new loginFrame();
+				loginLehioa login = new loginLehioa();
 				setVisible(false);
 
 				// Lehioaren kokapena lortu
@@ -328,7 +328,7 @@ public class registerFrame extends JFrame {
 				// Erregistro lehioa kendu eta login-era bueltatu
 				
 				setVisible(false);
-				loginFrame login = new loginFrame();
+				loginLehioa login = new loginLehioa();
 				
 				// Lehioaren kokapena lortu
 				Point currentLocation = getLocation();

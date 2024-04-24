@@ -45,16 +45,16 @@ public class loginDB extends Konexioa {
 			return false;
 		}
 
-		String sql = "SELECT epailea_izan FROM Erabiltzailea WHERE erabiltzaile_izena = ?";
+		String sql = "SELECT mota FROM Erabiltzailea WHERE erabiltzaile_izena = ?";
 		try (Connection conn = getKonexioa(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, erabiltzailea.getErabiltzaileIzena());
 			ResultSet resultSet = stmt.executeQuery();
 			if (resultSet.next()) {
-				String epaileaIzan = resultSet.getString("epailea_izan");
+				String epaileaIzan = resultSet.getString("mota");
 				
 				//Konprobatzen da ea epaileaIzan null den ala ez. Null bada false izango da.
 				if (epaileaIzan != null) {
-					return "bai".equalsIgnoreCase(epaileaIzan);
+					return "epailea".equalsIgnoreCase(epaileaIzan);
 				} else {
 					return false;
 				}

@@ -18,6 +18,8 @@ import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
@@ -31,13 +33,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import javax.swing.SwingConstants;
 
-public class loginFrame extends JFrame {
+public class loginLehioa extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField erabiltzaileaSartu;
-	private JPasswordField pasahitzaSartu;
 	private JPasswordField pasahitzaErrepikatu;
+	private JPasswordField pasahitzaSartu;
 	private int xx;
 	private int xy;
 
@@ -48,7 +50,7 @@ public class loginFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					loginFrame frame = new loginFrame();
+					loginLehioa frame = new loginLehioa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,9 +62,8 @@ public class loginFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public loginFrame() {
+	public loginLehioa() {
 
-		setAlwaysOnTop(true);
 		setTitle("Argazki lehiaketa");
 
 		// Barruko barra kentzeko
@@ -93,7 +94,7 @@ public class loginFrame extends JFrame {
 			public void mouseDragged(MouseEvent e) {
 				int x = e.getXOnScreen();
 				int y = e.getYOnScreen();
-				loginFrame.this.setLocation(x - xx, y - xy);
+				loginLehioa.this.setLocation(x - xx, y - xy);
 			}
 		});
 
@@ -103,7 +104,7 @@ public class loginFrame extends JFrame {
 
 		JLabel lblArgazkia = new JLabel("");
 		lblArgazkia.setBounds(-71, 5, 450, 260);
-		ImageIcon icono = new ImageIcon(loginFrame.class.getResource("/Irudiak/login.jpg"));
+		ImageIcon icono = new ImageIcon(loginLehioa.class.getResource("/Irudiak/login.jpg"));
 		Image image = icono.getImage();
 		Image nuevaImagen = image.getScaledInstance(450, 260, Image.SCALE_SMOOTH);
 		icono = new ImageIcon(nuevaImagen);
@@ -128,24 +129,39 @@ public class loginFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// Erabiltzaile berri bat sortu emandako erabiltzaile izenarekin eta pasahitzarekin
-				Erabiltzailea erabiltzailea = new Erabiltzailea(erabiltzaileaSartu.getText(), pasahitzaErrepikatu.getText());
-				
-				erabiltzaileaFrame erabiltzaileaFrame;
-				
-				// Konprobatu datu baseari deituz ze motatako erabiltzailea den.
+				Erabiltzailea erabiltzailea;
+
+				if (erabiltzaileaSartu.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Erabiltzailea hutsik dago", "Errorea",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				if (pasahitzaSartu.getText().equals(pasahitzaErrepikatu.getText())) {
+					erabiltzailea = new Erabiltzailea(erabiltzaileaSartu.getText(), pasahitzaErrepikatu.getText());
+				} else {
+					JOptionPane.showMessageDialog(null, "Pasahitzak ez dute koinziditzen.", "Errorea",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				erabiltzaileaLehioa erabiltzaileaFrame;
+
 				if (DatuBasea.loginDB.isErabiltzaileValid(erabiltzailea)) {
 					if (DatuBasea.loginDB.epaileaDa(erabiltzailea)) {
-						erabiltzaileaFrame = new erabiltzaileaFrame(true, erabiltzailea);
+						erabiltzaileaFrame = new erabiltzaileaLehioa(true, erabiltzailea);
 						setVisible(false);
 						erabiltzaileaFrame.setVisible(true);
-						return;
+					} else {
+						erabiltzaileaFrame = new erabiltzaileaLehioa(false, erabiltzailea);
+						setVisible(false);
+						erabiltzaileaFrame.setVisible(true);
 					}
-					erabiltzaileaFrame = new erabiltzaileaFrame(false, erabiltzailea);
-					setVisible(false);
-					erabiltzaileaFrame.setVisible(true);
-				}	else	 {
-					System.out.println("gaizki");
+				} else {
+					JOptionPane.showMessageDialog(null, "Erabiltzailea edo pasahitza gaizki sartu da.", "Errorea",
+							JOptionPane.ERROR_MESSAGE);
 				}
+
 			}
 		});
 		
@@ -187,19 +203,19 @@ public class loginFrame extends JFrame {
 		lblErrepikatuPasahitza.setBounds(405, 205, 159, 14);
 		contentPane.add(lblErrepikatuPasahitza);
 
-		pasahitzaSartu = new JPasswordField();
-		pasahitzaSartu.setBounds(404, 224, 254, 33);
-		contentPane.add(pasahitzaSartu);
-
 		pasahitzaErrepikatu = new JPasswordField();
-		pasahitzaErrepikatu.setBounds(404, 161, 254, 33);
+		pasahitzaErrepikatu.setBounds(404, 224, 254, 33);
 		contentPane.add(pasahitzaErrepikatu);
+
+		pasahitzaSartu = new JPasswordField();
+		pasahitzaSartu.setBounds(404, 161, 254, 33);
+		contentPane.add(pasahitzaSartu);
 
 		Button erregistratuBtn = new Button("Erregistratu");
 		erregistratuBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				registerFrame erregistroa = new registerFrame();
+				registerLehioa erregistroa = new registerLehioa();
 
 		        // Lehioaren kokapena lortu
 		        Point currentLocation = getLocation();

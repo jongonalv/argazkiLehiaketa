@@ -22,8 +22,8 @@ public class erregistroaDB extends Konexioa{
  	 * @param erabiltzailea the erabiltzailea
  	 * @throws SQLException the SQL exception
  	 */
-		public static void insertErabiltzailea(Erabiltzailea erabiltzailea) throws SQLException {
-			String sql = "INSERT INTO Erabiltzailea (izena, abizena, korreoa, erabiltzaile_izena, pasahitza) VALUES (?, ?, ?, ?, ?)";
+		public static void insertErabiltzailea(Erabiltzailea erabiltzailea) throws SQLException {			
+			String sql = "INSERT INTO Erabiltzailea (izena, abizena, korreoa, erabiltzaile_izena, pasahitza, mota) VALUES (?, ?, ?, ?, ?, 'arrunta')";
 
 			try (Connection conn = getKonexioa(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 				pstmt.setString(1, erabiltzailea.getIzena());

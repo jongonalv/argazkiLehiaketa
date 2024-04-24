@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class Konexioa {
 
 	/** Datu basearen konexioa egiteko URL-a. */
-	static final String DB_URL = "jdbc:mysql://localhost:3308/Lehiaketa?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+	static final String DB_URL = "jdbc:mysql://localhost:3308/argazkiLehiaketa?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
 
 	/** Datu basearen erabiltzailea konstantea. */
 	static final String USER = "root";
