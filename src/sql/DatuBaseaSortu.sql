@@ -50,7 +50,6 @@ CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Atala` (
   `atala_ID` INT NOT NULL AUTO_INCREMENT,
   `izena` VARCHAR(45) NOT NULL,
   `saria` VARCHAR(45) NOT NULL,
-  `argazki_max` INT NOT NULL,
   `lehiaketa_ID` INT NOT NULL,
   PRIMARY KEY (`atala_ID`),
   INDEX `fk_Atala_Lehiaketa1_idx` (`lehiaketa_ID` ASC) VISIBLE,
@@ -71,11 +70,9 @@ CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Argazkia` (
   `botoak` INT NOT NULL,
   `egilea` INT NOT NULL,
   `atala` INT NOT NULL,
-  `lehiaketa` INT NOT NULL,
   PRIMARY KEY (`irudia_ID`),
   INDEX `fk_Argazkia_Erabiltzailea1_idx` (`egilea` ASC) VISIBLE,
   INDEX `fk_Argazkia_Atala1_idx` (`atala` ASC) VISIBLE,
-  INDEX `fk_Argazkia_Lehiaketa1_idx` (`lehiaketa` ASC) VISIBLE,
   CONSTRAINT `fk_Argazkia_Erabiltzailea1`
     FOREIGN KEY (`egilea`)
     REFERENCES `argazkiLehiaketa`.`Erabiltzailea` (`erabiltzailea_ID`)
@@ -85,12 +82,8 @@ CREATE TABLE IF NOT EXISTS `argazkiLehiaketa`.`Argazkia` (
     FOREIGN KEY (`atala`)
     REFERENCES `argazkiLehiaketa`.`Atala` (`atala_ID`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Argazkia_Lehiaketa1`
-    FOREIGN KEY (`lehiaketa`)
-    REFERENCES `argazkiLehiaketa`.`Lehiaketa` (`lehiaketa_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION
+    )
 ENGINE = InnoDB;
 
 

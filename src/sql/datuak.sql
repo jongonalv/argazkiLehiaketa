@@ -4,7 +4,7 @@ INSERT INTO `argazkiLehiaketa`.`Erabiltzailea` (`izena`, `abizena`, `korreoa`, `
 ('Jone', 'Martinez', 'jone.martinez@example.com', 'jmartinez', '12345678', 'arrunta'),
 ('Unai', 'Fernandez', 'unai.fernandez@example.com', 'unaif', 'password', 'arrunta'),
 ('Leire', 'Sanchez', 'leire.sanchez@example.com', 'leisan', 'abcd1234', 'arrunta'),
-('Iker', 'Rodriguez', 'iker.rodriguez@example.com', 'ikerod', 'qwerty123', 'arrunta'),
+('Alberto', 'Gonzalez', 'iker.rodriguez@example.com', 'albertomago', 'qwerty123', 'arrunta'),
 ('Nerea', 'Perez', 'nerea.perez@example.com', 'nereap', 'nereapass', 'arrunta'),
 ('Asier', 'Lopez', 'asier.lopez@example.com', 'asierlo', 'contraseña123', 'arrunta'),
 ('Maite', 'Gonzalez', 'maite.gonzalez@example.com', 'maigon', 'p4ssw0rd', 'arrunta'),
@@ -52,31 +52,23 @@ SET @lehiaketa_id_2 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa`
 SET @lehiaketa_id_3 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa` WHERE `izena` = 'Animaliak I');
 SET @lehiaketa_id_4 = (SELECT `lehiaketa_ID` FROM `argazkiLehiaketa`.`Lehiaketa` WHERE `izena` = 'Loreak I');
 
--- Insertar participaciones para el usuario con ID 18
-INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
-VALUES (18, @lehiaketa_id_1), (18, @lehiaketa_id_2), (18, @lehiaketa_id_3), (18, @lehiaketa_id_4);
-
--- Insertar participaciones para el usuario con ID 19
-INSERT INTO `argazkiLehiaketa`.`Parte_hartu` (`erabiltzailea`, `lehiaketa`)
-VALUES (19, @lehiaketa_id_1), (19, @lehiaketa_id_2), (19, @lehiaketa_id_3), (19, @lehiaketa_id_4);
-
 -- Insertar temáticas para cada competición
 
 -- Competición: Natura I
-INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
-VALUES ('Planta', '1', 10, @lehiaketa_id_1), ('Animalia', '1', 10, @lehiaketa_id_1), ('Paisaia', '1', 10, @lehiaketa_id_1);
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `lehiaketa_ID`)
+VALUES ('Landareak', '1', @lehiaketa_id_1), ('Animaliak', '1', @lehiaketa_id_1), ('Paisaiak', '1', @lehiaketa_id_1);
 
 -- Competición: Urban I
-INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
-VALUES ('Hiri-lurra', '1', 10, @lehiaketa_id_2), ('Hiriburu', '1', 10, @lehiaketa_id_2), ('Grafitiak', '1', 10, @lehiaketa_id_2);
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `lehiaketa_ID`)
+VALUES ('Hiri-lurra', '1', @lehiaketa_id_2), ('Hiriburu', '1', @lehiaketa_id_2), ('Grafitiak', '1', @lehiaketa_id_2);
 
 -- Competición: Animaliak I
-INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
-VALUES ('Mamalia', '1', 10, @lehiaketa_id_3), ('Arrainak', '1', 10, @lehiaketa_id_3), ('Insektuak', '1', 10, @lehiaketa_id_3);
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `lehiaketa_ID`)
+VALUES ('Mamalia', '1', @lehiaketa_id_3), ('Arrainak', '1', @lehiaketa_id_3), ('Insektuak', '1', @lehiaketa_id_3);
 
 -- Competición: Loreak I
-INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `argazki_max`, `lehiaketa_ID`)
-VALUES ('Barbakoa', '1', 10, @lehiaketa_id_4), ('Suharrak', '1', 10, @lehiaketa_id_4), ('Zuhaitzak', '1', 10, @lehiaketa_id_4);
+INSERT INTO `argazkiLehiaketa`.`Atala` (`izena`, `saria`, `lehiaketa_ID`)
+VALUES ('Barbakoa', '1', @lehiaketa_id_4), ('Suharrak', '1', @lehiaketa_id_4), ('Zuhaitzak', '1', @lehiaketa_id_4);
 
 -- Competición: Natura I
 SET @lehiaketa_id_1 = (SELECT lehiaketa_ID FROM argazkiLehiaketa.Lehiaketa WHERE izena = 'Natura I');
@@ -113,6 +105,53 @@ INSERT INTO argazkiLehiaketa.Fasea (etapa, data_hasiera, data_bukaera, lehiaketa
 VALUES ('Inskripzioa', '2024-08-01', '2024-08-31', @lehiaketa_id_4),
        ('Hautatzea', '2024-09-01', '2024-09-30', @lehiaketa_id_4),
        ('Finala', '2024-10-01', '2024-10-31', @lehiaketa_id_4);
+       
+-- Competición: Natura I
+INSERT INTO `argazkiLehiaketa`.`Argazkia` (`kokapena`, `botoak`, `egilea`, `atala`)
+VALUES 
+('/Landareak/imagen1.jpg', 0, FLOOR(RAND() * 15) + 1, 1),
+('/Landareak/imagen2.jpg', 0, FLOOR(RAND() * 15) + 1, 1),
+('/Landareak/imagen3.jpg', 0, FLOOR(RAND() * 15) + 1, 1),
+('/Animaliak/imagen4.jpg', 0, FLOOR(RAND() * 15) + 1, 2),
+('/Animaliak/imagen5.jpg', 0, FLOOR(RAND() * 15) + 1, 2),
+('/Animaliak/imagen6.jpg', 0, FLOOR(RAND() * 15) + 1, 2),
+('/Paisaiak/imagen7.jpg', 0, FLOOR(RAND() * 15) + 1, 3),
+('/Paisaiak/imagen8.jpg', 0, FLOOR(RAND() * 15) + 1, 3),
+('/Paisaiak/imagen9.jpg', 0, FLOOR(RAND() * 15) + 1, 3),
+
+-- Competición: Urban I
+('/Hiri-lurra/imagen10.jpg', 0, FLOOR(RAND() * 15) + 1, 4),
+('/Hiri-lurra/imagen11.jpg', 0, FLOOR(RAND() * 15) + 1, 4),
+('/Hiri-lurra/imagen12.jpg', 0, FLOOR(RAND() * 15) + 1, 4),
+('/Hiriburu/imagen13.jpg', 0, FLOOR(RAND() * 15) + 1, 5),
+('/Hiriburu/imagen14.jpg', 0, FLOOR(RAND() * 15) + 1, 5),
+('/Hiriburu/imagen15.jpg', 0, FLOOR(RAND() * 15) + 1, 5),
+('/Grafitiak/imagen16.jpg', 0, FLOOR(RAND() * 15) + 1, 6),
+('/Grafitiak/imagen17.jpg', 0, FLOOR(RAND() * 15) + 1, 6),
+('/Grafitiak/imagen18.jpg', 0, FLOOR(RAND() * 15) + 1, 6),
+
+-- Competición: Animaliak I
+('/Mamalia/imagen19.jpg', 0, FLOOR(RAND() * 15) + 1, 7),
+('/Mamalia/imagen20.jpg', 0, FLOOR(RAND() * 15) + 1, 7),
+('/Mamalia/imagen21.jpg', 0, FLOOR(RAND() * 15) + 1, 7),
+('/Arrainak/imagen22.jpg', 0, FLOOR(RAND() * 15) + 1, 8),
+('/Arrainak/imagen23.jpg', 0, FLOOR(RAND() * 15) + 1, 8),
+('/Arrainak/imagen24.jpg', 0, FLOOR(RAND() * 15) + 1, 8),
+('/Insektuak/imagen25.jpg', 0, FLOOR(RAND() * 15) + 1, 9),
+('/Insektuak/imagen26.jpg', 0, FLOOR(RAND() * 15) + 1, 9),
+('/Insektuak/imagen27.jpg', 0, FLOOR(RAND() * 15) + 1, 9),
+
+-- Competición: Loreak I
+('/Barbakoa/imagen28.jpg', 0, FLOOR(RAND() * 15) + 1, 10),
+('/Barbakoa/imagen29.jpg', 0, FLOOR(RAND() * 15) + 1, 10),
+('/Barbakoa/imagen30.jpg', 0, FLOOR(RAND() * 15) + 1, 10),
+('/Suharrak/imagen31.jpg', 0, FLOOR(RAND() * 15) + 1, 11),
+('/Suharrak/imagen32.jpg', 0, FLOOR(RAND() * 15) + 1, 11),
+('/Suharrak/imagen33.jpg', 0, FLOOR(RAND() * 15) + 1, 11),
+('/Zuhaitzak/imagen34.jpg', 0, FLOOR(RAND() * 15) + 1, 12),
+('/Zuhaitzak/imagen35.jpg', 0, FLOOR(RAND() * 15) + 1, 12),
+('/Zuhaitzak/imagen36.jpg', 0, FLOOR(RAND() * 15) + 1, 12);
+       
 
 
 

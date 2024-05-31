@@ -15,7 +15,9 @@ import programaKlaseak.*;
 public class loginDB extends Konexioa {
 
 	/**
-	 * Checks if is erabiltzaile valid.
+	 * Erabiltzailea datu basean dagoen konprobatzen eta egiaztatzen du. Saioan
+	 * sartu nahi den erabiltzailearen datuak pasatzen dira parametrotzat eta
+	 * true/false itzultzen du erabiltzailea datu basean dagoen arabera
 	 *
 	 * @param erabiltzailea the erabiltzailea
 	 * @return true, if is erabiltzaile valid
@@ -35,12 +37,13 @@ public class loginDB extends Konexioa {
 	}
 
 	/**
-	 * Epailea da.
+	 * Erabiltzailea konprobatzen du ea zer rol duen.
 	 *
-	 * @param erabiltzailea the erabiltzailea
-	 * @return true, if successful
+	 * @param erabiltzailea el usuario a comprobar
+	 * @param mota          rol
+	 * @return true rol horretakoa bada
 	 */
-	public static boolean epaileaDa(Erabiltzailea erabiltzailea) {
+	public static boolean rolDa(Erabiltzailea erabiltzailea, String mota) {
 		if (!isErabiltzaileValid(erabiltzailea)) {
 			return false;
 		}
@@ -50,14 +53,8 @@ public class loginDB extends Konexioa {
 			stmt.setString(1, erabiltzailea.getErabiltzaileIzena());
 			ResultSet resultSet = stmt.executeQuery();
 			if (resultSet.next()) {
-				String epaileaIzan = resultSet.getString("mota");
-				
-				//Konprobatzen da ea epaileaIzan null den ala ez. Null bada false izango da.
-				if (epaileaIzan != null) {
-					return "epailea".equalsIgnoreCase(epaileaIzan);
-				} else {
-					return false;
-				}
+				String userMota = resultSet.getString("mota");
+				return mota.equalsIgnoreCase(userMota);
 			} else {
 				return false;
 			}
@@ -65,6 +62,6 @@ public class loginDB extends Konexioa {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
+
 }

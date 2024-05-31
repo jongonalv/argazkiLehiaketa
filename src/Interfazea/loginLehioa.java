@@ -44,22 +44,6 @@ public class loginLehioa extends JFrame {
 	private int xy;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					loginLehioa frame = new loginLehioa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public loginLehioa() {
@@ -146,12 +130,21 @@ public class loginLehioa extends JFrame {
 				}
 
 				erabiltzaileaLehioa erabiltzaileaFrame;
+				kudeatzaileakInterfazea kudeatuInterfazea;
 
 				if (DatuBasea.loginDB.isErabiltzaileValid(erabiltzailea)) {
-					if (DatuBasea.loginDB.epaileaDa(erabiltzailea)) {
+					if (DatuBasea.loginDB.rolDa(erabiltzailea, "epailea")) {
 						erabiltzaileaFrame = new erabiltzaileaLehioa(true, erabiltzailea);
 						setVisible(false);
 						erabiltzaileaFrame.setVisible(true);
+					} else if (DatuBasea.loginDB.rolDa(erabiltzailea, "kudeatzailea")){
+						kudeatuInterfazea = new kudeatzaileakInterfazea(false, erabiltzailea);
+						setVisible(false);
+						kudeatuInterfazea.setVisible(true);
+					} else if (DatuBasea.loginDB.rolDa(erabiltzailea, "admin")){
+						kudeatuInterfazea = new kudeatzaileakInterfazea(true, erabiltzailea);
+						setVisible(false);
+						kudeatuInterfazea.setVisible(true);
 					} else {
 						erabiltzaileaFrame = new erabiltzaileaLehioa(false, erabiltzailea);
 						setVisible(false);
@@ -252,5 +245,20 @@ public class loginLehioa extends JFrame {
 
 		// Zentratu
 		setLocationRelativeTo(null);
+	}
+	
+	// Programa exekutatzeko
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+
+			public void run() {
+				try {
+					loginLehioa frame = new loginLehioa();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
